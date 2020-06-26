@@ -1,0 +1,7 @@
+# Python
+.mypy_cache/
+
+# Other Files
+.env
+.vscode/
+github-environment-cleaner/
