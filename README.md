@@ -13,10 +13,10 @@ git clone https://github.com/VishalRamesh50/Github-Environment-Cleaner.git
 cd Github-Environment-Cleaner
 ```
 
-2. Install dependencies
+2. Install dependencies. Python version 3.6+ is required.
 
 ```sh
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 3. Run the interactive script!
