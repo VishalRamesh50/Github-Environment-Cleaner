@@ -7,8 +7,8 @@ from typing import Dict, List, Tuple, Optional
 
 load_dotenv()
 
-OWNER = os.getenv("OWNER") or input("Enter the Github username: ").strip()
-REPO = os.getenv("REPO") or input("Enter your repo name: ").strip()
+REPO = os.getenv("REPO") or input("Enter the repo name: ").strip()
+OWNER = os.getenv("OWNER") or input("Enter the owner (organization/username): ").strip()
 TOKEN = os.getenv("TOKEN") or input("Enter your Github token: ").strip()
 headers = {"Authorization": f"token {TOKEN}"}
 

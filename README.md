@@ -2,7 +2,9 @@
 
 Github does not have a way to delete environments from their UI so this script does it for you via their API. It can delete specific environments or all of your deployments interactively!
 
-All you need to do is provide the repository name, the owner's username, and an access token when prompted. You can get the access token by following [these instructions](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Make sure you give it `repo_deployment` permissions.
+All you need to do is provide the repository name, the respository's owner, and an access token when prompted. You can get the access token by following [these instructions](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token). Make sure you give it `repo_deployment` permissions.
+
+_Note: The owner name will be a GitHub username if it is a personal repository and the organization name if the repository lives under an organization._
 
 ## Getting Started
 
