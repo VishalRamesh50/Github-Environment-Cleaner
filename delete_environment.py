@@ -75,16 +75,29 @@ while env_map.keys():
                 envs_to_delete = (env_name,)
 
             for env_name in envs_to_delete:
-                print(f"Making the most recent deploy for {env_name} inactive...")
-                latest_deploy = env_map[env_name][0]
-                requests.post(
-                    f"https://api.github.com/repos/{OWNER}/{REPO}/deployments/{latest_deploy}/statuses",
-                    headers={
-                        "accept": "application/vnd.github.ant-man-preview+json",
-                        **headers,
-                    },
-                    json={"state": "inactive"},
-                )
+                print(f"Making most recent active deploys for {env_name} inactive...")
+                for deploy in env_map[env_name]:
+                    response = requests.get(
+                        f"https://api.github.com/repos/{OWNER}/{REPO}/deployments/{deploy}/statuses",
+                        headers={
+                            "accept": "application/vnd.github.ant-man-preview+json",
+                            **headers,
+                        },
+                    )
+                    # If the current deploy is already inactive then stop continuing to
+                    # make earlier deployments inactive. This assumes that there will
+                    # not be any Active deployments before an inactive deployment.
+                    if response.json()[0]["state"] == "inactive":
+                        break
+
+                    response = requests.post(
+                        f"https://api.github.com/repos/{OWNER}/{REPO}/deployments/{deploy}/statuses",
+                        headers={
+                            "accept": "application/vnd.github.ant-man-preview+json",
+                            **headers,
+                        },
+                        json={"state": "inactive"},
+                    )
 
             for env_name in envs_to_delete:
                 for deploy_id in env_map[env_name]:
